@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
+    android:id="@+id/rootView"
+    tools:context=".view.MainActivity">
+  <ProgressBar
+      android:id="@+id/progress_bar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_horizontal|center_vertical"
+      android:theme="@style/Theme.WeatherApp.PBColor"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+  
+  <LinearLayout
+      android:id="@+id/linearLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+    
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/actionbar"
+        style="?attr/toolbarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name" />
+    
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/searchbar_hint" />
+  </LinearLayout>
+  
+  <ImageView
+      android:id="@+id/main_bg_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/app_main_bg"
+      android:layout_marginTop="5dp"
+      android:alpha="0.2"
+      android:contentDescription="@string/app_name"
+      app:layout_constraintStart_toStartOf="@id/linearLayout"
+      app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+  
+  <include
+      layout="@layout/weather_layout"
+      android:layout_marginTop="24dp"
+      android:id="@+id/weather_layout"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/linearLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

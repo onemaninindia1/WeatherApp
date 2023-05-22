@@ -1,0 +1,13 @@
+<resources>
+  <string name="app_name">Weather Forecast</string>
+  <string name="search">Search</string>
+  <string name="searchbar_hint">Enter city name or zip</string>
+  <string name="degree_celsius_symbol">°C</string>
+  <string name="lbl_humidity">Humidity</string>
+  <string name="lbl_pressure">Pressure</string>
+  <string name="lbl_visibility">Visibility</string>
+  <string name="tv_updated_on">Updated on %s</string>
+  <string name="tv_country_city_name">%1$s, %2$s</string>
+  <string name="tv_temp">%s °C</string>
+  <string name="condition_icon_description">weather condition icon</string>
+</resources>

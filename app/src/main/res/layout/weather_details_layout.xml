@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_margin="15dp"
+    android:alpha="0.3"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    app:cardPreventCornerOverlap="true">
+  
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+    
+    <LinearLayout
+        android:id="@+id/ll_hum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+      
+      <TextView
+          android:id="@+id/lbl_humidity"
+          style="@style/TextAppearance.Material3.BodyLarge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_humidity"
+          android:textColor="@color/black" />
+      
+      <TextView
+          android:id="@+id/tv_humidity"
+          style="@style/TextAppearance.Material3.BodyLarge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="30dp"
+          android:textColor="@color/black"
+          android:text="70%"
+          app:layout_constraintStart_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/lbl_humidity" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/ll_pressure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:layout_constraintStart_toEndOf="@id/ll_hum"
+        app:layout_constraintTop_toTopOf="parent">
+      
+      <TextView
+          android:id="@+id/lbl_pressure"
+          style="@style/TextAppearance.Material3.BodyLarge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_pressure"
+          android:textColor="@color/black" />
+      
+      <TextView
+          android:id="@+id/tv_pressure"
+          style="@style/TextAppearance.Material3.BodyLarge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="30dp"
+          android:textColor="@color/black"
+          android:text="1021 mBar"
+          app:layout_constraintStart_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/lbl_humidity" />
+    </LinearLayout>
+  
+    <LinearLayout
+        android:id="@+id/ll_visibility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:layout_constraintStart_toEndOf="@id/ll_pressure"
+        app:layout_constraintTop_toTopOf="parent">
+    
+      <TextView
+          android:id="@+id/lbl_visibility"
+          style="@style/TextAppearance.Material3.BodyLarge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/lbl_visibility"
+          android:textColor="@color/black" />
+    
+      <TextView
+          android:id="@+id/tv_visibility"
+          style="@style/TextAppearance.Material3.BodyLarge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="30dp"
+          android:text="4.0 km"
+          android:textColor="@color/black"
+          app:layout_constraintStart_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/lbl_pressure" />
+    </LinearLayout>
+  </LinearLayout>
+</androidx.cardview.widget.CardView>

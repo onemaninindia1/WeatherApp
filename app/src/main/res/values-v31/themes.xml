@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="Theme.WeatherApp.SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="android:windowSplashScreenBackground">@color/design_default_color_primary_variant</item>
+    <item name="android:windowSplashScreenAnimationDuration">1000</item>
+  </style>
+</resources>
