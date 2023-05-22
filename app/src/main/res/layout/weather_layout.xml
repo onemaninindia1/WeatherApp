@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/cl_weather_layout"
+    android:visibility="invisible"
     xmlns:tools="http://schemas.android.com/tools">
   
     <RelativeLayout
@@ -50,6 +52,7 @@
         android:text="33" />
   
   <TextView
+      android:id="@+id/degree_celsius"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="12dp"
@@ -63,7 +66,6 @@
       style="@style/TextAppearance.Material3.BodyLarge"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Haze"
       android:paddingStart="15dp"
       android:paddingEnd="5dp"
       android:paddingBottom="5dp"

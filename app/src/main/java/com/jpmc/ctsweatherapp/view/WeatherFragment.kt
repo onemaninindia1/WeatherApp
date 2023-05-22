@@ -1,8 +1,6 @@
 package com.jpmc.ctsweatherapp.view
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,11 +23,6 @@ import com.jpmc.ctsweatherapp.util.*
 import com.jpmc.ctsweatherapp.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.net.URLEncoder
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {
@@ -156,5 +149,6 @@ class WeatherFragment : Fragment() {
             getUnits(weatherData.main.pressure, "mBar")
         binding.weatherLayout.weatherDetailsLayout.tvVisibility.text =
             convertVisibility(weatherData.visibility)
+        binding.weatherLayout.clWeatherLayout.visibility = View.VISIBLE
     }
 }
