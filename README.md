@@ -9,7 +9,7 @@ This application was developed with the following technologies
 5. JUnit
 
 ### Weather Forecast Screens
-<img src="https://github.com/onemaninindia1/WeatherApp/snaps/AppView.png" width="250" height="444" />
+<img src="https://github.com/onemaninindia1/WeatherApp/Snaps/AppView.png" width="250" height="444" />
 
 
 ### Project Description
