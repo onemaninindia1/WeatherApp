@@ -12,7 +12,7 @@ This application was developed with the following technologies
 <img src="https://github.com/onemaninindia1/WeatherApp/blob/master/Snaps/AppView.png" width="250" height="444" />
 
 ## Demo Video
-<img src="https://github.com/onemaninindia1/WeatherApp/blob/master/Snaps/demo_video.mov" width="250" height="444" />
+https://github.com/onemaninindia1/WeatherApp/blob/master/Snaps/demo_video.mov
 
 ### Project Description
 Weather forecast Android Application with MVVM architecture. The UI will be as like as above screenshot. First time load app requires location permission. If app obtained permission there is a `Spinner` with user current location. Incase the user denied permission app still loads with defalut location and always insisting user to provide access. User can ignore and still see the weather forecast by searching `city name` or `zip code`.
