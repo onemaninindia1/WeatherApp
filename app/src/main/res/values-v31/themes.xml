@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="Theme.WeatherApp.SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
-    <item name="android:windowSplashScreenBackground">@color/design_default_color_primary_variant</item>
-    <item name="android:windowSplashScreenAnimationDuration">1000</item>
+  <style name="Theme.WeatherApp.SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <item name="postSplashScreenTheme">@style/Theme.WeatherApp</item>
+  </style>
+  <style name="Theme.WeatherApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/purple_500</item>
+    <item name="colorPrimaryVariant">@color/purple_700</item>
+    <item name="colorOnPrimary">@color/white</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/teal_200</item>
+    <item name="colorSecondaryVariant">@color/teal_700</item>
+    <item name="colorOnSecondary">@color/black</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    <!-- Customize your theme here. -->
+  </style>
+  <style name="Theme.WeatherApp.Details">
+    <item name="cardBackgroundColor">#424242</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:outlineAmbientShadowColor">@color/black</item>
   </style>
 </resources>

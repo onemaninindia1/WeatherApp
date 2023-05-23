@@ -6,11 +6,23 @@
     <item name="colorPrimaryVariant">@color/purple_700</item>
     <item name="colorOnPrimary">@color/black</item>
     <!-- Secondary brand color. -->
-    <item name="colorSecondary">@color/teal_200</item>
-    <item name="colorSecondaryVariant">@color/teal_200</item>
+    <item name="colorSecondary">@color/light_white</item>
+    <item name="colorSecondaryVariant">@android:color/holo_orange_dark</item>
     <item name="colorOnSecondary">@color/black</item>
     <!-- Status bar color. -->
     <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     <!-- Customize your theme here. -->
+    <item name="android:windowBackground">@color/black</item>
+  </style>
+  <style name="Theme.WeatherApp.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="postSplashScreenTheme">@style/Theme.WeatherApp</item>
+  </style>
+  <style name="Theme.WeatherApp.PBColor">
+    <item name="colorAccent">@color/white</item>
+  </style>
+  <style name="Theme.WeatherApp.Details">
+    <item name="cardBackgroundColor">#424242</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:outlineAmbientShadowColor">@color/white</item>
   </style>
 </resources>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Base application theme. -->
-  <style name="Theme.WeatherApp" parent="Theme.MaterialComponents.Light">
+  <style name="Theme.WeatherApp" parent="Theme.MaterialComponents.Light.NoActionBar">
     <!-- Primary brand color. -->
     <item name="colorPrimary">@color/purple_500</item>
     <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,14 +13,17 @@
     <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     <!-- Customize your theme here. -->
   </style>
-  <style name="Theme.WeatherApp.SplashScreen" parent="Theme.SplashScreen">
-    <item name="android:windowSplashScreenBackground">@color/design_default_color_primary_variant</item>
-    <item name="android:windowSplashScreenAnimationDuration">1000</item>
-    <item name="android:windowSplashScreenIconBackgroundColor">@color/white</item>
+  <style name="Theme.WeatherApp.SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
     <item name="android:windowSplashScreenBrandingImage">@drawable/ic_logo_round</item>
+    <item name="android:windowBackground">@drawable/splash_bg_theme</item>
     <item name="postSplashScreenTheme">@style/Theme.WeatherApp</item>
   </style>
   <style name="Theme.WeatherApp.PBColor">
-    <item name="colorAccent">@color/white</item>
+    <item name="colorAccent">@color/purple_500</item>
+  </style>
+  <style name="Theme.WeatherApp.Details">
+    <item name="cardBackgroundColor">#424242</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:outlineAmbientShadowColor">@color/black</item>
   </style>
 </resources>
