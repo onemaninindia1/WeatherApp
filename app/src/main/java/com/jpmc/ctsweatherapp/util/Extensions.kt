@@ -1,5 +1,7 @@
 package com.jpmc.ctsweatherapp.util
 
+import com.jpmc.ctsweatherapp.models.Coord
+import com.jpmc.ctsweatherapp.models.InputData
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,6 +32,11 @@ fun convertVisibility(visibility: Int): String {
 
 fun getUnits(value: Any, unit: String): String {
     return "$value$unit"
+}
+
+fun loadByDefaultLocation(): InputData {
+    val lastLocation = Coord()
+    return InputData(lastLocation.lat, lastLocation.lon, null, null)
 }
 
 /* fun dateConversion(timestamp: Long): String {

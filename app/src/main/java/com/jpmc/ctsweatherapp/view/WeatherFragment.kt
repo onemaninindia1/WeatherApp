@@ -8,15 +8,11 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.jpmc.ctsweatherapp.R
 import com.jpmc.ctsweatherapp.databinding.FragmentWeatherBinding
-import com.jpmc.ctsweatherapp.di.AppModule
 import com.jpmc.ctsweatherapp.models.InputData
 import com.jpmc.ctsweatherapp.models.WeatherDetails
 import com.jpmc.ctsweatherapp.util.*
@@ -47,37 +43,35 @@ class WeatherFragment : Fragment() {
 
     private fun initWeatherForecast() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                weatherViewModel.query.observe(viewLifecycleOwner, Observer {
-                    if (it != null) {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                weatherViewModel.query.collect {
+                    if ((it.latitude != null && it.longitude != null) || it.cityName != null || it.zipCode != null) {
                         weatherViewModel.getWeatherForecast(it)
                     }
-                })
-                weatherViewModel.res.observe(viewLifecycleOwner, Observer {
-                    when (it.status) {
-                        Status.SUCCESS -> {
+                }
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                weatherViewModel.uiState.collect {
+                    when (it) {
+                        UIState.Loading -> {
                             binding.progressBar.visibility = View.GONE
-                            //binding.weatherLayout.cityName = it.data.
-                            it.data.let { res ->
-                                //Log.d("Live data:", res.toString())
-                                val weatherData = res as WeatherDetails
-                                renderUI(weatherData)
-                            }
                         }
-                        Status.LOADING -> {
-                            binding.progressBar.visibility = View.VISIBLE
-                        }
-                        Status.ERROR -> {
+                        is UIState.Error -> {
                             binding.progressBar.visibility = View.GONE
                             Snackbar.make(
                                 binding.rootView,
-                                "Something went wrong",
+                                it.error.toString(),
                                 Snackbar.LENGTH_SHORT
                             ).show()
                         }
+                        is UIState.ResponseData -> {
+                            renderUI(it.data)
+                        }
                         else -> {}
                     }
-                })
+                }
             }
         }
     }
@@ -85,7 +79,7 @@ class WeatherFragment : Fragment() {
     private fun handleSearchView() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                val weatherApi = AppModule.provideWeatherAPI(AppModule.provideRetrofit())
+                //val weatherApi = AppModule.provideWeatherAPI(AppModule.provideRetrofit())
                 val searchText = query.intOrString()
                 when (searchText::class.simpleName) {
                     "String" -> {

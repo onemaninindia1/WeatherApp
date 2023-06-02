@@ -1,43 +1,39 @@
 package com.jpmc.ctsweatherapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jpmc.ctsweatherapp.api.WeatherHelper
 import com.jpmc.ctsweatherapp.models.InputData
-import com.jpmc.ctsweatherapp.models.WeatherDetails
-import com.jpmc.ctsweatherapp.util.Resource
+import com.jpmc.ctsweatherapp.util.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(private val weatherRepo: WeatherHelper) : ViewModel(){
-    private val response = MutableLiveData<Resource>()
-    private val searchQueryOrGeolocation = MutableLiveData<InputData>()
-    val query: LiveData<InputData> get() = searchQueryOrGeolocation
+    private val _uiState = MutableStateFlow<UIState>(UIState.Inactive)
+    private val searchQueryOrGeolocation = MutableStateFlow(InputData())
+    val query: StateFlow<InputData> get() = searchQueryOrGeolocation
 
-    fun setQuery(queryData: InputData){
+    fun setQuery(queryData: InputData) {
         searchQueryOrGeolocation.value = queryData
     }
-    val res : LiveData<Resource>
-        get() = response
+    val uiState : StateFlow<UIState>
+        get() = _uiState
 
     fun getWeatherForecast(inputQuery: InputData) = viewModelScope.launch {
-        response.postValue(Resource.loading(null))
         weatherRepo.getWeatherDetails(inputQuery)
             // If Api call is failed, set the State to Error
             .catch {
-                response.postValue(Resource.error(it.message.toString(), null))
+                _uiState.value = UIState.Error(it.message)
             }
             // If Api call is succeeded, set the State to Success
             // and set the response data to data received from api
             .collect {
-                response.value = it.let {
-                    Resource.success(it)
-                }
+                _uiState.value = UIState.ResponseData(it)
             }
     }
 

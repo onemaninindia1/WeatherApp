@@ -5,33 +5,23 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import android.net.Uri
 import android.os.Bundle
-import android.os.Looper
 import android.provider.Settings
-import android.util.Log
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.*
 import com.jpmc.ctsweatherapp.R
-import com.jpmc.ctsweatherapp.di.AppModule
-import com.jpmc.ctsweatherapp.models.Coord
 import com.jpmc.ctsweatherapp.models.InputData
 import com.jpmc.ctsweatherapp.util.LOCATION_REQUEST_INTERVAL
 import com.jpmc.ctsweatherapp.util.MY_PERMISSIONS_REQUEST_LOCATION
+import com.jpmc.ctsweatherapp.util.loadByDefaultLocation
 import com.jpmc.ctsweatherapp.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -51,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 weatherViewModel.setQuery(inputData)
                 //testFunction(locationList.last())
             } else {
-                loadByDefaultLocation()
+                weatherViewModel.setQuery(loadByDefaultLocation())
             }
         }
     }
@@ -145,12 +135,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun loadByDefaultLocation() {
-        val lastLocation = Coord()
-        val inputData = InputData(lastLocation.lat, lastLocation.lon, null, null)
-        weatherViewModel.setQuery(inputData)
-    }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -194,7 +178,7 @@ class MainActivity : AppCompatActivity() {
                                 Uri.fromParts("package", this.packageName, null),
                             ),
                         )
-                        loadByDefaultLocation()
+                        weatherViewModel.setQuery(loadByDefaultLocation())
                     }
                 }
                 return
